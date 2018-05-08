@@ -73,6 +73,7 @@ func (r *request) toHTTP() (*http.Request, error) {
 	req.URL.Scheme = r.url.Scheme
 	req.Host = r.url.Host
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+	req.Header.Add("cache-control", "no-cache")
 
 	return req, nil
 }
