@@ -4,6 +4,7 @@ import (
 	"encoding/xml"
 	"errors"
 	"io/ioutil"
+	"log"
 	"strconv"
 )
 
@@ -70,14 +71,19 @@ type XMLMonitor struct {
 	Type          string            `xml:"type,string,attr"`
 	SubType       string            `xml:"sub_type,string,attr"`
 	ResponseTimes []XMLResponseTime `xml:"response_times>response_time"`
+	Ssl           struct {
+		Brand   string `xml:"brand,string,attr"`
+		Product string `xml:"product,string,attr"`
+		Expires int    `xml:"expires,int,attr"`
+	} `xml:"ssl"`
 }
 
 // XMLPagination XML representation of Pagination response
 type XMLPagination struct {
 	XMLName xml.Name `xml:"pagination"`
-	Offset  int      `xml:"offset,int,attr"`
-	Limit   int      `xml:"limit,int,attr"`
-	Total   int      `xml:"total,int,attr"`
+	Offset  int      `xml:"offset,int"`
+	Limit   int      `xml:"limit,int"`
+	Total   int      `xml:"total,int"`
 }
 
 // XMLResponseTime XML representation of Response Time
@@ -240,6 +246,7 @@ func (ad *Monitors) Get(req GetMonitorsRequest) (*XMLMonitors, error) {
 	body, _ := ioutil.ReadAll(resp.Body)
 
 	var out *XMLMonitors
+	log.Printf("Body is %s", body)
 	if err := xml.Unmarshal(body, &out); err != nil {
 		return nil, err
 	}
@@ -263,5 +270,6 @@ func (r *request) setGetMonitorsRequest(req GetMonitorsRequest) error {
 	if req.Limit != 0 {
 		r.params.Set("limit", strconv.Itoa(req.Limit))
 	}
+	r.params.Set("ssl", strconv.Itoa(1))
 	return nil
 }

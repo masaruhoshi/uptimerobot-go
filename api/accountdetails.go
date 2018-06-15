@@ -3,7 +3,6 @@ package api
 import (
 	"encoding/xml"
 	"io/ioutil"
-	"log"
 )
 
 // Account is UptimeRobot account representation
@@ -34,7 +33,6 @@ func (ad *AccountDetails) Get() (*Account, error) {
 	}
 	_, resp, err = requireOK(duration, resp, err)
 	if err != nil {
-		log.Print("is not ok?")
 		return nil, err
 	}
 	defer resp.Body.Close()
