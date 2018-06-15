@@ -102,5 +102,8 @@ func TestGetMonitors(t *testing.T) {
 		t.Logf("Monitor Type: %s", monitor.Type)
 		t.Logf("Monitor SubType: %s", monitor.SubType)
 		t.Logf("Monitor Recent Response Time(msec): %d", monitor.ResponseTimes[0].Value)
+		t.Logf("Monitor SSL Brand: %s", monitor.Ssl.Brand)
+		t.Logf("Monitor SSL Product: %s", monitor.Ssl.Product)
+		t.Logf("Monitor SSL Expires: %d", monitor.Ssl.Expires)
 	}
 }
