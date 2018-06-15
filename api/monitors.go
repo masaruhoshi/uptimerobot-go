@@ -81,9 +81,9 @@ type XMLMonitor struct {
 // XMLPagination XML representation of Pagination response
 type XMLPagination struct {
 	XMLName xml.Name `xml:"pagination"`
-	Offset  int      `xml:"offset,int,attr"`
-	Limit   int      `xml:"limit,int,attr"`
-	Total   int      `xml:"total,int,attr"`
+	Offset  int      `xml:"offset,int"`
+	Limit   int      `xml:"limit,int"`
+	Total   int      `xml:"total,int"`
 }
 
 // XMLResponseTime XML representation of Response Time
