@@ -4,7 +4,6 @@ import (
 	"encoding/xml"
 	"errors"
 	"io/ioutil"
-	"log"
 	"strconv"
 )
 
@@ -246,7 +245,6 @@ func (ad *Monitors) Get(req GetMonitorsRequest) (*XMLMonitors, error) {
 	body, _ := ioutil.ReadAll(resp.Body)
 
 	var out *XMLMonitors
-	log.Printf("Body is %s", body)
 	if err := xml.Unmarshal(body, &out); err != nil {
 		return nil, err
 	}
