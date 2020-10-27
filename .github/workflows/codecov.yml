@@ -1,0 +1,13 @@
+name: 'Validate'
+on: [push]
+jobs:
+  codecov:
+    name: 'CodeCov'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+        fail_ci_if_error: true
+        verbose: true
