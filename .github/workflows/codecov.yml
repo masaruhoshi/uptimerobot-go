@@ -1,7 +1,11 @@
-steps:
-- uses: actions/checkout@master
-- uses: codecov/codecov-action@v1
-  with:
-    token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-    fail_ci_if_error: true
-    verbose: true
+name: Example workflow for Codecov
+on: [push]
+jobs:
+  run:
+    steps:
+    - uses: actions/checkout@master
+    - uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+        fail_ci_if_error: true
+        verbose: true
